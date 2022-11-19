@@ -1,0 +1,86 @@
+{
+    "sourceFile": "src/components/LoginForm.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 17,
+            "patches": [
+                {
+                    "date": 1668829141107,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1668829147632,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,5 +5,5 @@\n   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {\r\n     e.preventDefault();\r\n     console.log(email, password);\r\n     };\r\n-};\n\\ No newline at end of file\n+};\r\n"
+                },
+                {
+                    "date": 1668829185136,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,11 @@\n-const LoginForm: React.FC = () => {\r\n+const LoginForm: React.FC<LoginFormProps> = () => {\r\n   const [email, setEmail] = useState('');\r\n   const [password, setPassword] = useState('');\r\n \r\n   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {\r\n     e.preventDefault();\r\n     console.log(email, password);\r\n     };\r\n };\r\n+\r\n+export default LoginForm;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1668829769985,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,16 @@\n+interface LoginFormProps {\r\n+  onLogin: ({\r\n+    username,\r\n+    password,\r\n+  }: {\r\n+    username: string;\r\n+    password: string;\r\n+  }) => void;\r\n+  title?: string;\r\n+  errorMessage?: string;\r\n+}\r\n+\r\n const LoginForm: React.FC<LoginFormProps> = () => {\r\n   const [email, setEmail] = useState('');\r\n   const [password, setPassword] = useState('');\r\n \r\n"
+                },
+                {
+                    "date": 1668829821959,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n   title?: string;\r\n   errorMessage?: string;\r\n }\r\n \r\n-const LoginForm: React.FC<LoginFormProps> = () => {\r\n+const LoginForm: React.FC<LoginFormProps> = ({onLogin, title = 'Log In', errorMessage}) => {\r\n   const [email, setEmail] = useState('');\r\n   const [password, setPassword] = useState('');\r\n \r\n   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {\r\n"
+                },
+                {
+                    "date": 1668829871879,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,6 @@\n+import React, { useState } from 'react';\r\n+\r\n interface LoginFormProps {\r\n   onLogin: ({\r\n     username,\r\n     password,\r\n"
+                },
+                {
+                    "date": 1668829885367,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,14 +12,8 @@\n   errorMessage?: string;\r\n }\r\n \r\n const LoginForm: React.FC<LoginFormProps> = ({onLogin, title = 'Log In', errorMessage}) => {\r\n-  const [email, setEmail] = useState('');\r\n-  const [password, setPassword] = useState('');\r\n-\r\n-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {\r\n-    e.preventDefault();\r\n-    console.log(email, password);\r\n-    };\r\n+  \r\n };\r\n \r\n export default LoginForm;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1668829914871,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,8 +12,10 @@\n   errorMessage?: string;\r\n }\r\n \r\n const LoginForm: React.FC<LoginFormProps> = ({onLogin, title = 'Log In', errorMessage}) => {\r\n-  \r\n+  return (\r\n+    <div> <h1>Login </h1></div>\r\n+  );\r\n };\r\n \r\n export default LoginForm;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1668830351670,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,13 @@\n }\r\n \r\n const LoginForm: React.FC<LoginFormProps> = ({onLogin, title = 'Log In', errorMessage}) => {\r\n   return (\r\n-    <div> <h1>Login </h1></div>\r\n+    <div>\r\n+        <form className=\"flex flex-col\" onSubmit={handleFormSubmit}>\r\n+            \r\n+        </form>\r\n+    </div>\r\n   );\r\n };\r\n \r\n export default LoginForm;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1668830364721,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,13 @@\n const LoginForm: React.FC<LoginFormProps> = ({onLogin, title = 'Log In', errorMessage}) => {\r\n   return (\r\n     <div>\r\n         <form className=\"flex flex-col\" onSubmit={handleFormSubmit}>\r\n-            \r\n+            <label htmlFor=\"username\">Username</label>\r\n+            <input type=\"text\" id=\"username\" name=\"username\" />\r\n+            <label htmlFor=\"password\">Password</label>\r\n+            <input type=\"password\" id=\"password\" name=\"password\" />\r\n+            <button type=\"submit\">Log In</button>\r\n         </form>\r\n     </div>\r\n   );\r\n };\r\n"
+                },
+                {
+                    "date": 1668830382228,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,8 +12,17 @@\n   errorMessage?: string;\r\n }\r\n \r\n const LoginForm: React.FC<LoginFormProps> = ({onLogin, title = 'Log In', errorMessage}) => {\r\n+    handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {\r\n+        event.preventDefault();\r\n+        const formData = new FormData(event.currentTarget);\r\n+        onLogin({\r\n+            username: formData.get('username') as string,\r\n+            password: formData.get('password') as string,\r\n+        });\r\n+    };\r\n+    \r\n   return (\r\n     <div>\r\n         <form className=\"flex flex-col\" onSubmit={handleFormSubmit}>\r\n             <label htmlFor=\"username\">Username</label>\r\n"
+                },
+                {
+                    "date": 1668830458586,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,26 +12,48 @@\n   errorMessage?: string;\r\n }\r\n \r\n const LoginForm: React.FC<LoginFormProps> = ({onLogin, title = 'Log In', errorMessage}) => {\r\n-    handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {\r\n+    const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {\r\n         event.preventDefault();\r\n         const formData = new FormData(event.currentTarget);\r\n         onLogin({\r\n             username: formData.get('username') as string,\r\n             password: formData.get('password') as string,\r\n         });\r\n     };\r\n-    \r\n-  return (\r\n-    <div>\r\n-        <form className=\"flex flex-col\" onSubmit={handleFormSubmit}>\r\n-            <label htmlFor=\"username\">Username</label>\r\n-            <input type=\"text\" id=\"username\" name=\"username\" />\r\n-            <label htmlFor=\"password\">Password</label>\r\n-            <input type=\"password\" id=\"password\" name=\"password\" />\r\n-            <button type=\"submit\">Log In</button>\r\n-        </form>\r\n+\r\n+ return (\r\n+    <div className=\"max-w-screen-sm p-12 mx-auto bg-gray-50 rounded-md shadow-lg\">\r\n+      <form className=\"flex flex-col\" onSubmit={handleFormSubmit}>\r\n+        <fieldset>\r\n+          <legend className=\"text-3xl text-gray-800 mb-4\">{title}</legend>\r\n+          <InputField\r\n+            name=\"username\"\r\n+            type=\"text\"\r\n+            label=\"Username\"\r\n+            submitted={submitted}\r\n+            requiredMessage=\"Username is required\"\r\n+            onChange={(e) => setUsername(e.target.value)}\r\n+            value={username}\r\n+            autoComplete=\"username\"\r\n+          />\r\n+          <InputField\r\n+            name=\"password\"\r\n+            type=\"password\"\r\n+            label=\"Password\"\r\n+            submitted={submitted}\r\n+            requiredMessage=\"Password is required\"\r\n+            onChange={(e) => setPassword(e.target.value)}\r\n+            value={password}\r\n+            autoComplete=\"current-password\"\r\n+          />\r\n+          <Button type=\"submit\">Login</Button>\r\n+          {errorMessage && (\r\n+            <div className=\"text-red-500 mt-2\">{errorMessage}</div>\r\n+          )}\r\n+        </fieldset>\r\n+      </form>\r\n     </div>\r\n   );\r\n };\r\n \r\n"
+                },
+                {
+                    "date": 1668830470058,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,9 @@\n import React, { useState } from 'react';\r\n \r\n+import Button from './Button';\r\n+import InputField from './InputField';\r\n+\r\n interface LoginFormProps {\r\n   onLogin: ({\r\n     username,\r\n     password,\r\n"
+                },
+                {
+                    "date": 1668830572220,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,5 @@\n import React, { useState } from 'react';\r\n-\r\n import Button from './Button';\r\n import InputField from './InputField';\r\n \r\n interface LoginFormProps {\r\n@@ -15,8 +14,11 @@\n   errorMessage?: string;\r\n }\r\n \r\n const LoginForm: React.FC<LoginFormProps> = ({onLogin, title = 'Log In', errorMessage}) => {\r\n+      const [submitted, setSubmitted] = useState(false);\r\n+  const [username, setUsername] = useState('');\r\n+  const [password, setPassword] = useState('');\r\n     const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {\r\n         event.preventDefault();\r\n         const formData = new FormData(event.currentTarget);\r\n         onLogin({\r\n"
+                },
+                {
+                    "date": 1668830617751,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,22 +13,22 @@\n   title?: string;\r\n   errorMessage?: string;\r\n }\r\n \r\n-const LoginForm: React.FC<LoginFormProps> = ({onLogin, title = 'Log In', errorMessage}) => {\r\n-      const [submitted, setSubmitted] = useState(false);\r\n+const LoginForm: React.FC<LoginFormProps> = ({ onLogin, title = 'Log In', errorMessage }) => {\r\n+  const [submitted, setSubmitted] = useState(false);\r\n   const [username, setUsername] = useState('');\r\n   const [password, setPassword] = useState('');\r\n-    const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {\r\n-        event.preventDefault();\r\n-        const formData = new FormData(event.currentTarget);\r\n-        onLogin({\r\n-            username: formData.get('username') as string,\r\n-            password: formData.get('password') as string,\r\n-        });\r\n-    };\r\n \r\n- return (\r\n+  const handleFormSubmit = (event: React.FormEvent) => {\r\n+    event.preventDefault();\r\n+    if (username && password) {\r\n+      onLogin({ username, password });\r\n+    }\r\n+    setSubmitted(true);\r\n+  };\r\n+\r\n+  return (\r\n     <div className=\"max-w-screen-sm p-12 mx-auto bg-gray-50 rounded-md shadow-lg\">\r\n       <form className=\"flex flex-col\" onSubmit={handleFormSubmit}>\r\n         <fieldset>\r\n           <legend className=\"text-3xl text-gray-800 mb-4\">{title}</legend>\r\n@@ -61,5 +61,5 @@\n     </div>\r\n   );\r\n };\r\n \r\n-export default LoginForm;\n\\ No newline at end of file\n+export default LoginForm;\r\n"
+                },
+                {
+                    "date": 1668830756240,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,9 +51,9 @@\n             onChange={(e) => setPassword(e.target.value)}\r\n             value={password}\r\n             autoComplete=\"current-password\"\r\n           />\r\n-          <Button type=\"submit\">Login</Button>\r\n+          <Button type=\"submit\" className=\"bg-darkmagenta-40\">Login</Button>\r\n           {errorMessage && (\r\n             <div className=\"text-red-500 mt-2\">{errorMessage}</div>\r\n           )}\r\n         </fieldset>\r\n"
+                },
+                {
+                    "date": 1668830766967,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,9 +51,9 @@\n             onChange={(e) => setPassword(e.target.value)}\r\n             value={password}\r\n             autoComplete=\"current-password\"\r\n           />\r\n-          <Button type=\"submit\" className=\"bg-darkmagenta-40\">Login</Button>\r\n+          <Button type=\"submit\" className=\"bg-darkmagenta\">Login</Button>\r\n           {errorMessage && (\r\n             <div className=\"text-red-500 mt-2\">{errorMessage}</div>\r\n           )}\r\n         </fieldset>\r\n"
+                },
+                {
+                    "date": 1668830777184,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,9 +51,9 @@\n             onChange={(e) => setPassword(e.target.value)}\r\n             value={password}\r\n             autoComplete=\"current-password\"\r\n           />\r\n-          <Button type=\"submit\" className=\"bg-darkmagenta\">Login</Button>\r\n+          <Button type=\"submit\" className=\"bg-gray-50\">Login</Button>\r\n           {errorMessage && (\r\n             <div className=\"text-red-500 mt-2\">{errorMessage}</div>\r\n           )}\r\n         </fieldset>\r\n"
+                }
+            ],
+            "date": 1668829141107,
+            "name": "Commit-0",
+            "content": "const LoginForm: React.FC = () => {\r\n  const [email, setEmail] = useState('');\r\n  const [password, setPassword] = useState('');\r\n\r\n  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {\r\n    e.preventDefault();\r\n    console.log(email, password);\r\n    };\r\n};"
+        }
+    ]
+}

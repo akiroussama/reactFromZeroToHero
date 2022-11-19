@@ -1,0 +1,30 @@
+{
+    "sourceFile": "src/components/Button.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1668830824216,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1668830839794,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n               border-solid border-2 border-transparent\r\n               hover:border-gray-700 hover:bg-cy-blue\r\n               disabled:opacity-50   \r\n               disabled:cursor-not-allowed\r\n-              bg-red-900\r\n+              bg-purple-900\r\n               ${className}\r\n             `}\r\n       {...rest}\r\n     >\r\n"
+                },
+                {
+                    "date": 1668830856883,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,8 +23,9 @@\n               hover:border-gray-700 hover:bg-cy-blue\r\n               disabled:opacity-50   \r\n               disabled:cursor-not-allowed\r\n               bg-purple-900\r\n+              bg-gradient-to-l\r\n               ${className}\r\n             `}\r\n       {...rest}\r\n     >\r\n"
+                },
+                {
+                    "date": 1668830864756,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,8 @@\n               hover:border-gray-700 hover:bg-cy-blue\r\n               disabled:opacity-50   \r\n               disabled:cursor-not-allowed\r\n               bg-purple-900\r\n-              bg-gradient-to-l\r\n               ${className}\r\n             `}\r\n       {...rest}\r\n     >\r\n"
+                }
+            ],
+            "date": 1668830824216,
+            "name": "Commit-0",
+            "content": "import React from 'react';\r\n\r\ninterface ButtonProps\r\n  extends React.DetailedHTMLProps<\r\n      React.ButtonHTMLAttributes<HTMLButtonElement>,\r\n      HTMLButtonElement\r\n    >,\r\n    React.AriaAttributes {}\r\n\r\nconst Button: React.FC<ButtonProps> = (props) => {\r\n  const { className, children, ...rest } = props;\r\n  return (\r\n    <button\r\n      className={`\r\n              py-2\r\n              px-6\r\n              rounded-sm\r\n              self-start      \r\n              text-white\r\n              bg-cy-blue\r\n              duration-20\r\n              border-solid border-2 border-transparent\r\n              hover:border-gray-700 hover:bg-cy-blue\r\n              disabled:opacity-50   \r\n              disabled:cursor-not-allowed\r\n              bg-red-900\r\n              ${className}\r\n            `}\r\n      {...rest}\r\n    >\r\n      {children}\r\n    </button>\r\n  );\r\n};\r\n\r\nexport default Button;\r\n"
+        }
+    ]
+}

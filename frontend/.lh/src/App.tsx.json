@@ -1,0 +1,50 @@
+{
+    "sourceFile": "src/App.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 8,
+            "patches": [
+                {
+                    "date": 1668829960223,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1668829983307,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n function App() {\r\n   const [count, setCount] = useState(0)\r\n \r\n   return (\r\n-    <div className=\"App\">\r\n+    <div className=\"lg:container lg mx-auto m-10\">\r\n      \r\n     </div>\r\n   )\r\n }\r\n"
+                },
+                {
+                    "date": 1668830014408,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,15 @@\n import { useState } from 'react'\r\n import reactLogo from './assets/react.svg'\r\n import './App.css'\r\n+import LoginForm from './components/LoginForm'\r\n \r\n function App() {\r\n   const [count, setCount] = useState(0)\r\n \r\n   return (\r\n     <div className=\"lg:container lg mx-auto m-10\">\r\n+      <LoginForm onLogin={handleLogin} errorMessage={errorMessage}></LoginForm>\r\n      \r\n     </div>\r\n   )\r\n }\r\n"
+                },
+                {
+                    "date": 1668830050219,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,11 +3,12 @@\n import './App.css'\r\n import LoginForm from './components/LoginForm'\r\n \r\n function App() {\r\n-  const [count, setCount] = useState(0)\r\n-\r\n-  return (\r\n+  const handleLogin = ({ username, password }: { username: string; password: string }) => {\r\n+    console.log('username', username)\r\n+  };\r\n+    return (\r\n     <div className=\"lg:container lg mx-auto m-10\">\r\n       <LoginForm onLogin={handleLogin} errorMessage={errorMessage}></LoginForm>\r\n      \r\n     </div>\r\n"
+                },
+                {
+                    "date": 1668830058522,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,5 @@\n import { useState } from 'react'\r\n-import reactLogo from './assets/react.svg'\r\n import './App.css'\r\n import LoginForm from './components/LoginForm'\r\n \r\n function App() {\r\n"
+                },
+                {
+                    "date": 1668830084629,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,9 @@\n function App() {\r\n   const handleLogin = ({ username, password }: { username: string; password: string }) => {\r\n     console.log('username', username)\r\n   };\r\n+  const [errorMessage, setErrorMessage] = useState<string | null>(null);\r\n     return (\r\n     <div className=\"lg:container lg mx-auto m-10\">\r\n       <LoginForm onLogin={handleLogin} errorMessage={errorMessage}></LoginForm>\r\n      \r\n"
+                },
+                {
+                    "date": 1668830094320,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n function App() {\r\n   const handleLogin = ({ username, password }: { username: string; password: string }) => {\r\n     console.log('username', username)\r\n   };\r\n-  const [errorMessage, setErrorMessage] = useState<string | null>(null);\r\n+  const errorMessage = 'Invalid username or password';\r\n     return (\r\n     <div className=\"lg:container lg mx-auto m-10\">\r\n       <LoginForm onLogin={handleLogin} errorMessage={errorMessage}></LoginForm>\r\n      \r\n"
+                },
+                {
+                    "date": 1668830126420,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,9 @@\n import './App.css'\r\n import LoginForm from './components/LoginForm'\r\n \r\n function App() {\r\n+    const [errorMessage, setErrorMessage] = useState('');\r\n   const handleLogin = ({ username, password }: { username: string; password: string }) => {\r\n     console.log('username', username)\r\n   };\r\n   const errorMessage = 'Invalid username or password';\r\n"
+                },
+                {
+                    "date": 1668830180284,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,8 @@\n     const [errorMessage, setErrorMessage] = useState('');\r\n   const handleLogin = ({ username, password }: { username: string; password: string }) => {\r\n     console.log('username', username)\r\n   };\r\n-  const errorMessage = 'Invalid username or password';\r\n     return (\r\n     <div className=\"lg:container lg mx-auto m-10\">\r\n       <LoginForm onLogin={handleLogin} errorMessage={errorMessage}></LoginForm>\r\n      \r\n"
+                }
+            ],
+            "date": 1668829960223,
+            "name": "Commit-0",
+            "content": "import { useState } from 'react'\r\nimport reactLogo from './assets/react.svg'\r\nimport './App.css'\r\n\r\nfunction App() {\r\n  const [count, setCount] = useState(0)\r\n\r\n  return (\r\n    <div className=\"App\">\r\n     \r\n    </div>\r\n  )\r\n}\r\n\r\nexport default App\r\n"
+        }
+    ]
+}
