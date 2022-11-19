@@ -52,7 +52,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, title = 'Log In', errorM
             value={password}
             autoComplete="current-password"
           />
-          <Button type="submit" className="bg-purple-900">Login</Button>
+          <Button type="submit">Login</Button>
           {errorMessage && (
             <div className="text-red-500 mt-2">{errorMessage}</div>
           )}
