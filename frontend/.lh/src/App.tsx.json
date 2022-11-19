@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 8,
+            "activePatchIndex": 15,
             "patches": [
                 {
                     "date": 1668829960223,
@@ -40,6 +40,34 @@
                 {
                     "date": 1668830180284,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,8 @@\n     const [errorMessage, setErrorMessage] = useState('');\r\n   const handleLogin = ({ username, password }: { username: string; password: string }) => {\r\n     console.log('username', username)\r\n   };\r\n-  const errorMessage = 'Invalid username or password';\r\n     return (\r\n     <div className=\"lg:container lg mx-auto m-10\">\r\n       <LoginForm onLogin={handleLogin} errorMessage={errorMessage}></LoginForm>\r\n      \r\n"
+                },
+                {
+                    "date": 1668831743208,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,15 @@\n   };\r\n     return (\r\n     <div className=\"lg:container lg mx-auto m-10\">\r\n       <LoginForm onLogin={handleLogin} errorMessage={errorMessage}></LoginForm>\r\n-     \r\n+      <Welcome\r\n+          username={username}\r\n+          onLogout={() => {\r\n+            setIsAuthed(false);\r\n+            setUsername('');\r\n+          }}\r\n+        />\r\n     </div>\r\n   )\r\n }\r\n \r\n"
+                },
+                {
+                    "date": 1668831756234,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,16 +8,18 @@\n     console.log('username', username)\r\n   };\r\n     return (\r\n     <div className=\"lg:container lg mx-auto m-10\">\r\n-      <LoginForm onLogin={handleLogin} errorMessage={errorMessage}></LoginForm>\r\n-      <Welcome\r\n+      {isAuthed ? (\r\n+    <Welcome\r\n           username={username}\r\n           onLogout={() => {\r\n             setIsAuthed(false);\r\n             setUsername('');\r\n           }}\r\n         />\r\n+      <LoginForm onLogin={handleLogin} errorMessage={errorMessage}></LoginForm>\r\n+  \r\n     </div>\r\n   )\r\n }\r\n \r\n"
+                },
+                {
+                    "date": 1668831764105,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,8 +16,9 @@\n             setIsAuthed(false);\r\n             setUsername('');\r\n           }}\r\n         />\r\n+        ) : (\r\n       <LoginForm onLogin={handleLogin} errorMessage={errorMessage}></LoginForm>\r\n   \r\n     </div>\r\n   )\r\n"
+                },
+                {
+                    "date": 1668831817222,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,16 @@\n import LoginForm from './components/LoginForm'\r\n \r\n function App() {\r\n     const [errorMessage, setErrorMessage] = useState('');\r\n+    const [isAuthed, setIsAuthed] = useState(false);\r\n+    const handleLogin = ({ username, password }: { username: string; password: string }) => {\r\n+        if (username === 'admin' && password === 'admin') {\r\n+            setIsAuthed(true);\r\n+        } else {\r\n+            setErrorMessage('Invalid username or password');\r\n+        }\r\n+    };\r\n   const handleLogin = ({ username, password }: { username: string; password: string }) => {\r\n     console.log('username', username)\r\n   };\r\n     return (\r\n@@ -18,9 +26,9 @@\n           }}\r\n         />\r\n         ) : (\r\n       <LoginForm onLogin={handleLogin} errorMessage={errorMessage}></LoginForm>\r\n-  \r\n+        )}\r\n     </div>\r\n   )\r\n }\r\n \r\n"
+                },
+                {
+                    "date": 1668831822938,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,11 +11,9 @@\n         } else {\r\n             setErrorMessage('Invalid username or password');\r\n         }\r\n     };\r\n-  const handleLogin = ({ username, password }: { username: string; password: string }) => {\r\n-    console.log('username', username)\r\n-  };\r\n+ \r\n     return (\r\n     <div className=\"lg:container lg mx-auto m-10\">\r\n       {isAuthed ? (\r\n     <Welcome\r\n"
+                },
+                {
+                    "date": 1668831836949,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,9 @@\n \r\n function App() {\r\n     const [errorMessage, setErrorMessage] = useState('');\r\n     const [isAuthed, setIsAuthed] = useState(false);\r\n+    const [username, setUsername] = useState('');\r\n     const handleLogin = ({ username, password }: { username: string; password: string }) => {\r\n         if (username === 'admin' && password === 'admin') {\r\n             setIsAuthed(true);\r\n         } else {\r\n"
+                },
+                {
+                    "date": 1668831864566,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n import { useState } from 'react'\r\n import './App.css'\r\n import LoginForm from './components/LoginForm'\r\n+import Welcome from './components/Welcome'\r\n \r\n function App() {\r\n     const [errorMessage, setErrorMessage] = useState('');\r\n     const [isAuthed, setIsAuthed] = useState(false);\r\n"
                 }
             ],
             "date": 1668829960223,

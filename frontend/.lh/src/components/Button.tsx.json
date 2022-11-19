@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 3,
+            "activePatchIndex": 4,
             "patches": [
                 {
                     "date": 1668830824216,
@@ -20,6 +20,10 @@
                 {
                     "date": 1668830864756,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,8 @@\n               hover:border-gray-700 hover:bg-cy-blue\r\n               disabled:opacity-50   \r\n               disabled:cursor-not-allowed\r\n               bg-purple-900\r\n-              bg-gradient-to-l\r\n               ${className}\r\n             `}\r\n       {...rest}\r\n     >\r\n"
+                },
+                {
+                    "date": 1668831969423,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,8 @@\n               border-solid border-2 border-transparent\r\n               hover:border-gray-700 hover:bg-cy-blue\r\n               disabled:opacity-50   \r\n               disabled:cursor-not-allowed\r\n-              bg-purple-900\r\n               ${className}\r\n             `}\r\n       {...rest}\r\n     >\r\n"
                 }
             ],
             "date": 1668830824216,

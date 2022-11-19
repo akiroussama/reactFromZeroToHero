@@ -23,7 +23,6 @@ const Button: React.FC<ButtonProps> = (props) => {
               hover:border-gray-700 hover:bg-cy-blue
               disabled:opacity-50   
               disabled:cursor-not-allowed
-              bg-purple-900
               ${className}
             `}
       {...rest}
