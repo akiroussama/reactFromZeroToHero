@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import BooksList from "./BooksList";
 import LoadingSpinner from "./LoadingSpinner";
 
 const QuotesList = () => {
@@ -21,6 +22,7 @@ const QuotesList = () => {
 
   return (
     <div className="bg-white">
+      <BooksList></BooksList>
       {isLoading ? (
         <LoadingSpinner />
       ) : (
