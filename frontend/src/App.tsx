@@ -1,35 +1,51 @@
-import { useState } from 'react'
-import './App.css'
-import LoginForm from './components/LoginForm'
-import Welcome from './components/Welcome'
+import { useState } from "react";
+import LoginForm from "./components/LoginForm";
+import Welcome from "./components/Welcome";
 
 function App() {
-    const [errorMessage, setErrorMessage] = useState('');
-    const [isAuthed, setIsAuthed] = useState(false);
-    const [username, setUsername] = useState('');
-    const handleLogin = ({ username, password }: { username: string; password: string }) => {
-        if (username === 'admin' && password === 'admin') {
-            setIsAuthed(true);
+  const [isAuthed, setIsAuthed] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [username, setUsername] = useState("");
+
+  const handleLogin = async (creds: { username: string; password: string }) => {
+    try {
+      setErrorMessage("");
+      const res = await fetch("/auth", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(creds),
+      });
+      if (res.status === 200) {
+        setIsAuthed(true);
+        setUsername(creds.username);
+      } else {
+        if (res.status === 401) {
+          const { message } = await res.json();
+          setErrorMessage(message);
         } else {
-            setErrorMessage('Invalid username or password');
+          throw Error(`error during auth, status code: ${res.status}`);
         }
-    };
- 
-    return (
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  return (
     <div className="lg:container lg mx-auto m-10">
       {isAuthed ? (
-    <Welcome
+        <Welcome
           username={username}
           onLogout={() => {
             setIsAuthed(false);
-            setUsername('');
+            setUsername("");
           }}
         />
-        ) : (
-      <LoginForm onLogin={handleLogin} errorMessage={errorMessage}></LoginForm>
-        )}
+      ) : (
+        <LoginForm onLogin={handleLogin} errorMessage={errorMessage} />
+      )}
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import Button from './Button';
-import InputField from './InputField';
+import React, { useState } from "react";
+import Button from "./Button";
+import InputField from "./InputField";
 
 interface LoginFormProps {
   onLogin: ({
@@ -14,10 +14,14 @@ interface LoginFormProps {
   errorMessage?: string;
 }
 
-const LoginForm: React.FC<LoginFormProps> = ({ onLogin, title = 'Log In', errorMessage }) => {
+const LoginForm: React.FC<LoginFormProps> = ({
+  onLogin,
+  title = "Log In",
+  errorMessage,
+}) => {
   const [submitted, setSubmitted] = useState(false);
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleFormSubmit = (event: React.FormEvent) => {
     event.preventDefault();
