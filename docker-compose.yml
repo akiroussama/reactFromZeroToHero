@@ -4,14 +4,12 @@ services:
     ports:
       - 3000:3000
     depends_on:
-      backend:
-        condition: service_healthy
+      - backend
+    volumes:
+     - ./frontend/src/:/app/src
   backend:
     build: ./backend/.
     ports:
-      - 5000:5000
-    healthcheck:
-      test: ["CMD-SHELL", "curl -f http://localhost:5000 || exit 1"]
-      timeout: 10s
-      interval: 10s
-      retries: 10
+      - 4000:4000
+    volumes:
+      - ./backend/src/:/app/src

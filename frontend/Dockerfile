@@ -1,30 +1,15 @@
-FROM node:alpine as builder
+FROM node:lts-alpine
 
-RUN mkdir app
-
+RUN mkdir -p /app
 WORKDIR /app
 
-COPY public ./public
+# Install app dependencies
 COPY package*.json ./
+RUN npm i
 
-RUN yarn install
-RUN yarn add cypress
+# Bundle app source
+COPY . .
 
-COPY tsconfig.json ./
-COPY tsconfig.node.json ./
-COPY cypress.config.ts ./
-COPY cypress.d.ts ./
-COPY src ./src
-COPY index.html ./
+RUN npm run build
 
-RUN yarn run build
-
-FROM node:alpine
-
-RUN mkdir app
-
-WORKDIR /app
-
-COPY --from=builder /app/dist /app/dist
-
-CMD yarn dev /app/dist
+CMD npm run dev --host
